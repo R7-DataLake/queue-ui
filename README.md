@@ -41,6 +41,7 @@ SUPER_SECRET_KEY=xxxx
 
 # Run
 ```shell
+pnpm i
 node index.js
 ```
 
