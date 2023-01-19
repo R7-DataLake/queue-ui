@@ -1,10 +1,6 @@
-const { Queue: QueueMQ, Worker, QueueScheduler } = require('bullmq');
+const { Queue: QueueMQ } = require('bullmq');
 const fastify = require('fastify');
 const { authen } = require('./auth');
-
-require('dotenv').config('./config.conf')
-
-// const sleep = (t) => new Promise((resolve) => setTimeout(resolve, t * 1000));
 
 const redisOptions = {
   host: process.env.REDIS_HOST || 'localhost',
@@ -14,10 +10,10 @@ const redisOptions = {
   tls: false,
 };
 
-const KK_QUEUE_NAME = process.env.QUEUE_NAME || 'KHONKAEN';
-const MSK_QUEUE_NAME = process.env.QUEUE_NAME || 'MAHASARAKHAM';
-const ROIET_QUEUE_NAME = process.env.QUEUE_NAME || 'ROIET';
-const KALASIN_QUEUE_NAME = process.env.QUEUE_NAME || 'KALASIN';
+const KK_QUEUE_NAME = process.env.KK_QUEUE_NAME || 'KHONKAEN';
+const MSK_QUEUE_NAME = process.env.MSK_QUEUE_NAME || 'MAHASARAKHAM';
+const ROIET_QUEUE_NAME = process.env.ROIET_QUEUE_NAME || 'ROIET';
+const KALASIN_QUEUE_NAME = process.env.KALASIN_QUEUE_NAME || 'KALASIN';
 
 const createQueueMQ = (name) => new QueueMQ(name, { connection: redisOptions });
 

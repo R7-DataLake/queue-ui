@@ -7,13 +7,9 @@
 
 # วิธีการติดตั้ง
 
-```shell
-cp _config.conf config.conf
-```
+ค่า Environments
 
-แก้ไขไฟล์ `config.conf`
-
-```conf
+```env
 
 # การเชื่อมต่อ Redis
 REDIS_HOST=localhost
@@ -42,9 +38,9 @@ SUPER_SECRET_KEY=xxxx
 # Run
 ```shell
 pnpm i
-node index.js
+REDIS_USERNAME=default REDIS_PASSWORD=789124 npm start
 ```
 
 # เข้าใช้งาน
 
-`http://localhost:3301`
+http://localhost:3301
