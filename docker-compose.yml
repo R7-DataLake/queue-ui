@@ -1,7 +1,7 @@
 version: "3.8"
 services:
   demo-queue-ui:
-    image: "siteslave/r7-queue-ui"
+    image: "registry.gitlab.com/r7-platform/queue-ui"
     container_name: "demo-queue-ui"
     environment:
       - NODE_ENV=production
