@@ -34,7 +34,8 @@ const run = async () => {
       process.exit(1)
     }
 
-    console.log(`For the UI with basic auth, open http://${address}:3301/login`);
+    console.log(`Server is now listening on ${address}:3301`);
+    console.log(`For login, open http://${address}:3301/login`);
   });
 };
 
