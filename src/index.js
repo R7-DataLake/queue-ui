@@ -27,14 +27,18 @@ const run = async () => {
 
   app.register(authen, { queue: [KK, MSK, ROI, KLS] });
 
-  await app.listen({ port: 3301 });
-  // eslint-disable-next-line no-console
-  console.log('Running on 3301...');
-  console.log('For the UI with basic auth, open http://localhost:3301/login');
+  await app.listen({ port: 3301 }, (err, address) => {
+
+    if (err) {
+      fastify.log.error(err)
+      process.exit(1)
+    }
+
+    console.log(`For the UI with basic auth, open http://${address}:3301/login`);
+  });
 };
 
 run().catch((e) => {
-  // eslint-disable-next-line no-console
   console.error(e);
   process.exit(1);
 });
