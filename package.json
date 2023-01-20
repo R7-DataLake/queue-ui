@@ -1,25 +1,22 @@
 {
-  "name": "bullmq-ui",
+  "name": "ry7-queue-ui",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "description": "Queue ui for R7 Platform",
   "scripts": {
-    "start": "nodemon index.js",
+    "start": "npx nodemon",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "author": "Satit Rianpit <rianpit@gmail.com>",
+  "license": "GPLv3",
   "dependencies": {
     "@bull-board/fastify": "^4.10.2",
-    "@fastify/basic-auth": "^5.0.0",
     "@fastify/cookie": "^8.3.0",
     "@fastify/jwt": "^6.5.0",
     "@fastify/view": "^7.4.0",
     "bull": "^4.10.2",
     "bullmq": "^3.5.5",
     "ejs": "^3.1.8",
-    "express": "^4.18.2",
     "fastify": "^4.11.0"
   },
   "devDependencies": {

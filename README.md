@@ -44,3 +44,10 @@ REDIS_USERNAME=default REDIS_PASSWORD=789124 npm start
 # เข้าใช้งาน
 
 http://localhost:3301
+
+
+# Build docker
+
+```shell
+docker build -t siteslave/r7-queue-ui . --no-cache
+```
