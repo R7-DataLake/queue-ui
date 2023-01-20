@@ -3,17 +3,17 @@ const fastify = require('fastify');
 const { authen } = require('./auth');
 
 const redisOptions = {
-  host: process.env.REDIS_HOST || 'localhost',
-  port: Number(process.env.REDIS_PORT) || 6379,
-  username: process.env.REDIS_USERNAME || 'admin',
-  password: process.env.REDIS_PASSWORD || 'admin',
+  host: process.env.R7QUEUE_REDIS_HOST || 'localhost',
+  port: Number(process.env.R7QUEUE_REDIS_PORT) || 6379,
+  username: process.env.R7QUEUE_REDIS_USERNAME || 'admin',
+  password: process.env.R7QUEUE_REDIS_PASSWORD || 'admin',
   tls: false,
 };
 
-const KK_QUEUE_NAME = process.env.KK_QUEUE_NAME || 'KHONKAEN';
-const MSK_QUEUE_NAME = process.env.MSK_QUEUE_NAME || 'MAHASARAKHAM';
-const ROIET_QUEUE_NAME = process.env.ROIET_QUEUE_NAME || 'ROIET';
-const KALASIN_QUEUE_NAME = process.env.KALASIN_QUEUE_NAME || 'KALASIN';
+const KK_QUEUE_NAME = process.env.R7QUEUE_KK_QUEUE_NAME || 'KHONKAEN';
+const MSK_QUEUE_NAME = process.env.R7QUEUE_MSK_QUEUE_NAME || 'MAHASARAKHAM';
+const ROIET_QUEUE_NAME = process.env.R7QUEUE_ROIET_QUEUE_NAME || 'ROIET';
+const KALASIN_QUEUE_NAME = process.env.R7QUEUE_KALASIN_QUEUE_NAME || 'KALASIN';
 
 const createQueueMQ = (name) => new QueueMQ(name, { connection: redisOptions });
 

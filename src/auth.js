@@ -4,8 +4,8 @@ const path = require('path');
 
 module.exports.authen = function authen(fastify, { queue }, next) {
 
-  const SUPER_SECRET_KEY = process.env.SUPER_SECRET_KEY || 'jflvmHJeuPDyf6DXX2RN3CbdPkbzj2DY';
-  const SECRET_KEY = process.env.SUPER_SECRET_KEY || 'jflvmHJeuPDyf6DXX2RN3CbdPkbzj2DY';
+  const SUPER_SECRET_KEY = process.env.R7QUEUE_SUPER_SECRET_KEY || 'jflvmHJeuPDyf6DXX2RN3CbdPkbzj2DY';
+  const SECRET_KEY = process.env.R7QUEUE_SUPER_SECRET_KEY || 'jflvmHJeuPDyf6DXX2RN3CbdPkbzj2DY';
 
 
   fastify.register(require('@fastify/cookie'), {
@@ -69,7 +69,7 @@ module.exports.authen = function authen(fastify, { queue }, next) {
       handler: async (req, reply) => {
         const { username = '', password = '' } = req.body;
 
-        if (username === process.env.UI_USERNAME || 'bull' && password === process.env.UI_PASSWORD || 'board') {
+        if (username === process.env.R7QUEUE_UI_USERNAME || 'xxxxx' && password === process.env.R7QUEUE_UI_PASSWORD || 'xxxxx') {
           const token = await reply.jwtSign({
             name: 'r7admin',
             role: ['admin'],
