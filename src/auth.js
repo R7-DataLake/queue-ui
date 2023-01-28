@@ -4,8 +4,13 @@ const path = require('path');
 
 module.exports.authen = function authen(fastify, { queue }, next) {
 
+<<<<<<< HEAD:auth.js
   const SUPER_SECRET_KEY = process.env.R7PLATFORM_QUEUEUI_SUPER_SECRET_KEY || 'jflvmHJeuPDyf6DXX2RN3CbdPkbzj2DY';
   const SECRET_KEY = process.env.R7PLATFORM_QUEUEUI_SECRET_KEY || 'jflvmHJeuPDyf6DXX2RN3CbdPkbzj2DY';
+=======
+  const SUPER_SECRET_KEY = process.env.R7QUEUE_SUPER_SECRET_KEY || 'jflvmHJeuPDyf6DXX2RN3CbdPkbzj2DY';
+  const SECRET_KEY = process.env.R7QUEUE_SUPER_SECRET_KEY || 'jflvmHJeuPDyf6DXX2RN3CbdPkbzj2DY';
+>>>>>>> 5f61bacb28cf13b5aa114d0a5fd814966aaddd13:src/auth.js
 
 
   fastify.register(require('@fastify/cookie'), {
@@ -69,7 +74,11 @@ module.exports.authen = function authen(fastify, { queue }, next) {
       handler: async (req, reply) => {
         const { username = '', password = '' } = req.body;
 
+<<<<<<< HEAD:auth.js
         if (username === process.env.R7PLATFORM_QUEUEUI_UI_USERNAME || 'bull' && password === process.env.R7PLATFORM_QUEUEUI_UI_PASSWORD || 'board') {
+=======
+        if (username === process.env.R7QUEUE_UI_USERNAME || 'xxxxx' && password === process.env.R7QUEUE_UI_PASSWORD || 'xxxxx') {
+>>>>>>> 5f61bacb28cf13b5aa114d0a5fd814966aaddd13:src/auth.js
           const token = await reply.jwtSign({
             name: 'r7admin',
             role: ['admin'],

@@ -43,3 +43,10 @@ R7PLATFORM_QUEUEUI_SUPER_SECRET_KEY=xxxx R7PLATFORM_QUEUEUI_SECRET_KEY=xxxx R7PL
 # เข้าใช้งาน
 
 http://localhost:3301
+
+
+# Build docker
+
+```shell
+docker build -t siteslave/r7-queue-ui . --no-cache
+```

@@ -1,0 +1,13 @@
+{
+  "verbose": true,
+  "ignore": [
+    "*.test.js",
+    "views/*",
+    "public/*"
+  ],
+  "watch": [
+    "src"
+  ],
+  "ext": "js",
+  "exec": "node ./src/index.js"
+}
