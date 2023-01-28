@@ -5,7 +5,6 @@ const { authen } = require('./auth');
 const redisOptions = {
   host: process.env.REDIS_HOST || 'localhost',
   port: Number(process.env.REDIS_PORT) || 6379,
-  username: process.env.REDIS_USERNAME || 'admin',
   password: process.env.REDIS_PASSWORD || 'admin',
   tls: false,
 };
