@@ -1,8 +1,8 @@
 version: "3.8"
 services:
-  demo-queue-ui:
-    image: "registry.gitlab.com/r7-platform/queue-ui"
-    container_name: "demo-queue-ui"
+  queueui:
+    image: "r7platform/queue-ui"
+    container_name: "queueui"
     environment:
       - NODE_ENV=production
       - R7PLATFORM_QUEUEUI_REDIS_HOST=192.168.1.11
