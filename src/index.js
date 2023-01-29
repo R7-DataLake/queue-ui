@@ -27,7 +27,8 @@ const run = async () => {
 
   app.register(authen, { queue: [KK, MSK, ROI, KLS] });
 
-  await app.listen({ port: 3301 }, (err, address) => {
+  const port = process.env.R7PLATFORM_QUEUEUI_PORT ? Number(process.env.R7PLATFORM_QUEUEUI_PORT) : 3031
+  await app.listen({ port }, (err, address) => {
 
     if (err) {
       fastify.log.error(err)

@@ -32,7 +32,7 @@ module.exports.authen = function authen(fastify, { queue }, next) {
       serverAdapter,
       options: {
         uiConfig: {
-          boardTitle: 'R7 BOARD',
+          boardTitle: 'R7 Queues',
         },
       }
     });
