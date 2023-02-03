@@ -36,8 +36,8 @@ const run = async () => {
       process.exit(1)
     }
 
-    console.log(`Server is now listening on ${address}:${port}`);
-    console.log(`For login, open http://${address}:${port}/login`);
+    console.log(`Server is now listening on ${address}`);
+    console.log(`For login, open ${address}/login`);
   });
 };
 
