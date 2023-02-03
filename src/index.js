@@ -5,13 +5,13 @@ const { authen } = require('./auth');
 const redisOptions = {
   host: process.env.R7PLATFORM_QUEUEUI_REDIS_HOST || 'localhost',
   port: Number(process.env.R7PLATFORM_QUEUEUI_REDIS_PORT) || 6379,
-  password: process.env.R7PLATFORM_QUEUEUI_REDIS_PASSWORD || 'admin',
+  password: process.env.R7PLATFORM_QUEUEUI_REDIS_PASSWORD || '',
   tls: false,
 };
 
 const envZones = process.env.R7PLATFORM_QUEUEUI_PLATFORM_ZONE_LIST || 'KHONKAEN,MAHASARAKHAM,ROIET,KALASIN';
 
-let zones = envZones.split(',');
+let zones = envZones.replace(/\s/g, '').split(',');
 let queues = [];
 
 const createQueueMQ = (zone) => new QueueMQ(zone, { connection: redisOptions });
@@ -36,8 +36,8 @@ const run = async () => {
       process.exit(1)
     }
 
-    console.log(`Server is now listening on ${address}:3000`);
-    console.log(`For login, open http://${address}:3000/login`);
+    console.log(`Server is now listening on ${address}:${port}`);
+    console.log(`For login, open http://${address}:${port}/login`);
   });
 };
 
