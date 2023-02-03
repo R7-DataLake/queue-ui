@@ -4,10 +4,9 @@ LABEL maintainer="Satit Rianpit <rianpit@gmail.com>"
 
 WORKDIR /home/ui
 
-RUN apk update && \
-  apk upgrade && \
-  apk add --no-cache \
-  tzdata && \
+ENV NODE_ENV=production
+
+RUN apk add --no-cache tzdata && \
   cp /usr/share/zoneinfo/Asia/Bangkok /etc/localtime && \
   echo "Asia/Bangkok" > /etc/timezone
 
@@ -19,7 +18,6 @@ COPY ./package.json .
 
 RUN pnpm i --prod
 
-ENV NODE_ENV === 'production'
 
 EXPOSE 3000
 

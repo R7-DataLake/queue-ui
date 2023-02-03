@@ -1,1 +1,0 @@
-docker build -t r7platform/queue-ui . --no-cache
