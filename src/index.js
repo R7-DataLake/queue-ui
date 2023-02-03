@@ -9,37 +9,39 @@ const redisOptions = {
   tls: false,
 };
 
-const KK_QUEUE_NAME = process.env.R7PLATFORM_QUEUEUI_KK_QUEUE_NAME || 'KHONKAEN';
-const MSK_QUEUE_NAME = process.env.R7PLATFORM_QUEUEUI_MSK_QUEUE_NAME || 'MAHASARAKHAM';
-const ROIET_QUEUE_NAME = process.env.R7PLATFORM_QUEUEUI_ROIET_QUEUE_NAME || 'ROIET';
-const KALASIN_QUEUE_NAME = process.env.R7PLATFORM_QUEUEUI_KALASIN_QUEUE_NAME || 'KALASIN';
+const envZones = process.env.R7PLATFORM_QUEUEUI_PLATFORM_ZONE_LIST || 'KHONKAEN,MAHASARAKHAM,ROIET,KALASIN';
 
-const createQueueMQ = (name) => new QueueMQ(name, { connection: redisOptions });
+let zones = envZones.split(',');
+let queues = [];
+
+const createQueueMQ = (zone) => new QueueMQ(zone, { connection: redisOptions });
 
 const run = async () => {
-  const KK = createQueueMQ(KK_QUEUE_NAME);
-  const MSK = createQueueMQ(MSK_QUEUE_NAME);
-  const ROI = createQueueMQ(ROIET_QUEUE_NAME);
-  const KLS = createQueueMQ(KALASIN_QUEUE_NAME);
+
+  zones.forEach(zone => {
+    const queue = createQueueMQ(zone);
+    queues.push(queue);
+  });
 
   const app = fastify();
 
-  app.register(authen, { queue: [KK, MSK, ROI, KLS] });
+  app.register(authen, { queue: queues });
 
-  const port = process.env.R7PLATFORM_QUEUEUI_PORT ? Number(process.env.R7PLATFORM_QUEUEUI_PORT) : 3031
-  await app.listen({ port }, (err, address) => {
+  const port = process.env.R7PLATFORM_QUEUEUI_PORT ? Number(process.env.R7PLATFORM_QUEUEUI_PORT) : 3000;
+
+  await app.listen({ port, host: '0.0.0.0' }, (err, address) => {
 
     if (err) {
       fastify.log.error(err)
       process.exit(1)
     }
 
-    console.log(`Server is now listening on ${address}:3301`);
-    console.log(`For login, open http://${address}:3301/login`);
+    console.log(`Server is now listening on ${address}:3000`);
+    console.log(`For login, open http://${address}:3000/login`);
   });
 };
 
-run().catch((e) => {
-  console.error(e);
+run().catch((error) => {
+  console.error(error);
   process.exit(1);
 });
