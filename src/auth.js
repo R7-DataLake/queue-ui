@@ -44,7 +44,7 @@ module.exports.authen = function authen(fastify, { queue }, next) {
       engine: {
         ejs: require('ejs'),
       },
-      root: path.resolve('./views'),
+      root: path.join(__dirname, './views'),
     });
 
     fastify.route({
