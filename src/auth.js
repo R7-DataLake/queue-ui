@@ -74,7 +74,6 @@ module.exports.authen = function authen(fastify, { queue }, next) {
       url: basePath + '/login',
       handler: async (req, reply) => {
         const { username = '', password = '' } = req.body;
-        console.log(req.body);
         if (username === process.env.R7PLATFORM_QUEUEUI_UI_USERNAME || 'bull' && password === process.env.R7PLATFORM_QUEUEUI_UI_PASSWORD || 'board') {
           const token = await reply.jwtSign({
             name: 'r7admin',
