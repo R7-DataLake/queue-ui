@@ -33,7 +33,7 @@ module.exports.authen = function authen(fastify, { queue }, next) {
     serverAdapter.setBasePath(urlBasePath)
 
     fastify.register(serverAdapter.registerPlugin(), {
-      prefix: '/ui'
+      prefix: basePath + '/ui'
     });
 
     createBullBoard({
@@ -63,7 +63,7 @@ module.exports.authen = function authen(fastify, { queue }, next) {
 
     fastify.route({
       method: 'GET',
-      url: '/login',
+      url: basePath + '/login',
       handler: (req, reply) => {
         reply.view('login.ejs');
       },
@@ -71,10 +71,9 @@ module.exports.authen = function authen(fastify, { queue }, next) {
 
     fastify.route({
       method: 'POST',
-      url: '/login',
+      url: basePath + '/login',
       handler: async (req, reply) => {
         const { username = '', password = '' } = req.body;
-
         if (username === process.env.R7PLATFORM_QUEUEUI_UI_USERNAME || 'bull' && password === process.env.R7PLATFORM_QUEUEUI_UI_PASSWORD || 'board') {
           const token = await reply.jwtSign({
             name: 'r7admin',
@@ -96,7 +95,8 @@ module.exports.authen = function authen(fastify, { queue }, next) {
     });
 
     fastify.addHook('preHandler', async (request, reply) => {
-      if (request.url === '/login') {
+      const url = basePath + '/login';
+      if (request.url === url) {
         return;
       }
 
